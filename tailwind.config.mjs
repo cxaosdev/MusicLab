@@ -27,18 +27,29 @@ export default {
   },
   plugins: [
     function ({ addComponents }) {
-      addComponents({
-        ".button": {
-          "@apply bg-lightButton text-lightText": {},
+      addComponents(
+        {
+          ".button": {
+            "@apply bg-lightButton text-lightText": {},
 
-          ".dark &": {
-            "@apply bg-darkButton text-darkText": {},
-          },
-          "&:hover": {
-            filter: "brightness(1.1)",
+            ".dark &": {
+              "@apply bg-darkButton text-darkText": {},
+            },
+            "&:hover": {
+              filter: "brightness(1.3)",
+            },
           },
         },
-      });
+        {
+          ".background": {
+            "@apply bg-lightBackground text-lightText": {},
+
+            ".dark &": {
+              "@apply bg-darkBackground text-darkText": {},
+            },
+          },
+        }
+      );
     },
   ],
 };

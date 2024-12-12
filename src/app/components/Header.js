@@ -6,7 +6,7 @@ export default function Header() {
   const { theme, toggleTheme } = useContext(ThemeContext);
 
   return (
-    <header className="flex justify-between h-[6rem] items-center px-4 py-2 bg-lightBackground dark:bg-darkBackground shadow">
+    <header className="flex justify-between h-[6rem] items-center px-4 py-2 bg-lightBackground dark:bg-darkBackground ">
       <h1 className=" text-[3rem] font-bold text-primary dark:text-secondary">
         MusicLab
       </h1>
