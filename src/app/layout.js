@@ -10,7 +10,6 @@ export default function RootLayout({ children }) {
   const [theme, setTheme] = useState("light");
 
   useEffect(() => {
-    // 다크 모드 적용
     document.documentElement.classList.toggle("dark", theme === "dark");
   }, [theme]);
 
