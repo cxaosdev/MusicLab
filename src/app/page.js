@@ -9,7 +9,7 @@ export default function Home() {
 
   return (
     <div className="p-4">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      {/* <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         <div className="col-span-4">
           <table className="table-auto w-full border-collapse">
             <thead>
@@ -35,7 +35,7 @@ export default function Home() {
             </tbody>
           </table>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

@@ -7,9 +7,7 @@ export default function Header() {
 
   return (
     <header className="flex justify-between h-[6rem] items-center px-4 py-2 bg-lightBackground dark:bg-darkBackground ">
-      <h1 className=" text-[3rem] font-bold text-primary dark:text-secondary">
-        MusicLab
-      </h1>
+      <img className="ml-[.5rem] h-[3.5rem]" src="dark_logo.png" />
       <nav className="flex items-center gap-4">
         <div></div>
         <button className="px-4 py-2 bg-gray rounded-lg">YouTube Music</button>
