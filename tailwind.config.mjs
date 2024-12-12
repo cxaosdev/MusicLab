@@ -25,5 +25,20 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addComponents }) {
+      addComponents({
+        ".button": {
+          "@apply bg-lightButton text-lightText": {},
+
+          ".dark &": {
+            "@apply bg-darkButton text-darkText": {},
+          },
+          "&:hover": {
+            filter: "brightness(1.1)",
+          },
+        },
+      });
+    },
+  ],
 };
