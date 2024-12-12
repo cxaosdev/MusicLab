@@ -27,20 +27,22 @@ export default function Header() {
         <MusicSelector />
 
         {/* 언어 */}
-        <div className="flex items-center button px-3 py-2  rounded-full cursor-pointer">
-          <RiArrowDropDownLine className="text-[1.4rem]" />
-          <span className="font-semibold">En</span>
+        <div className="flex items-center justify-center button px-3 py-2 rounded-full cursor-pointer">
+          <>
+            <RiArrowDropDownLine className="text-[1.4rem]" />
+            <span className="font-semibold text-[1rem]">En</span>
+          </>
         </div>
 
         {/* 다크모드 */}
         <button
           onClick={toggleTheme}
-          className="flex items-center justify-center w-10 h-10 button rounded-full cursor-pointer"
+          className="flex items-center justify-center px-3 py-2 button rounded-full cursor-pointer"
         >
           {theme === "light" ? (
-            <MdWbSunny className="text-2xl" />
+            <MdWbSunny className="text-[1.4rem]" />
           ) : (
-            <MdDarkMode className="text-2xl" />
+            <MdDarkMode className="text-[1.4rem]" />
           )}
         </button>
       </div>

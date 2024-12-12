@@ -16,7 +16,7 @@ export default function MusicSelector() {
             : "bg-transparent text-lightText dark:text-darkText "
         }`}
       >
-        <SiYoutubemusic className="text-red-600 text-[1rem] bg-white rounded-full" />
+        <SiYoutubemusic className="text-red-600 text-[1rem] bg-lightBackground rounded-full" />
         YouTube Music
       </button>
       <button
