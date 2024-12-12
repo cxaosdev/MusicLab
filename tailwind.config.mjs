@@ -30,13 +30,25 @@ export default {
       addComponents(
         {
           ".button": {
-            "@apply bg-lightButton text-lightText": {},
+            "@apply bg-lightButton text-lightText cursor-pointer": {},
 
             ".dark &": {
-              "@apply bg-darkButton text-darkText": {},
+              "@apply bg-darkButton text-darkText cursor-pointer": {},
             },
             "&:hover": {
-              filter: "brightness(1.3)",
+              ".dark &": {
+                filter: "brightness(1.3)",
+              },
+              "&": {
+                filter: "brightness(0.9)",
+              },
+            },
+            "&:active": {
+              "@apply bg-lightButton text-lightText": {},
+              ".dark &": {
+                "@apply bg-darkButton text-darkText": {},
+              },
+              filter: "none",
             },
           },
         },
