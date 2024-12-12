@@ -11,5 +11,5 @@ body {
 
 body {
   font-family: "Pretendard", ui-sans-serif;
-  @apply bg-light text-dark dark:bg-dark dark:text-gray;
+  @apply bg-lightBackground text-lightText dark:bg-darkBackground dark:text-darkText;
 }

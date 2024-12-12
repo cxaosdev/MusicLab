@@ -11,11 +11,17 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+
         primary: "#3994FF",
         secondary: "#77ABFD",
-        light: "#F0F0F0",
-        gray: "#CCCCCC",
-        dark: "#121212",
+
+        lightBackground: "#F0F0F0",
+        lightButton: "#CCCCCC",
+        lightText: "#121212",
+
+        darkBackground: "#121212",
+        darkButton: "#333333",
+        darkText: "#F0F0F0",
       },
     },
   },

@@ -13,7 +13,7 @@ export default function Home() {
         <div className="col-span-4">
           <table className="table-auto w-full border-collapse">
             <thead>
-              <tr className="border-b border-gray-700">
+              <tr className="border-b border-lightText dark:border-gray">
                 <th className="p-2 text-left">Title</th>
                 <th className="p-2 text-left">Artist</th>
                 <th className="p-2 text-left"> </th>
@@ -22,7 +22,10 @@ export default function Home() {
             </thead>
             <tbody>
               {dummyData.map((item, index) => (
-                <tr key={index} className="border-b border-gray-800">
+                <tr
+                  key={index}
+                  className="border-b border-lightText dark:border-gray"
+                >
                   <td className="p-2">{item.title}</td>
                   <td className="p-2">{item.artist}</td>
                   <td className="p-2">{item.album}</td>
