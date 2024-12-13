@@ -39,7 +39,7 @@ export default function LanguageSelector() {
       </div>
 
       {isOpen && (
-        <div className="absolute top-[2.5rem] left-0 bg-lightButton dark:bg-darkBackground shadow-lg rounded-lg w-40">
+        <div className="absolute top-[2.5rem] left-0 rounded-lg w-40">
           <ul className="flex flex-col space-y-[.2rem]  justify-center">
             {languages
               .filter((lang) => lang.code !== selectedLanguage)

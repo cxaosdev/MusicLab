@@ -79,7 +79,10 @@ function ChartTable({ title, data }) {
               className="transition-colors border-b border-lightButton/50 dark:border-darkButton/50 hover:bg-lightButton/50 dark:hover:bg-darkButton/50"
             >
               {/* 순위 */}
-              <td className="px-4 py-3 text-center">{item.rank}</td>
+              <td className="px-4 py-3 text-center">
+                {item.rank}
+                {item.current_position}
+              </td>
               {/* 앨범 이미지 */}
               <td className="px-4 py-3 text-center">
                 <img
@@ -93,7 +96,10 @@ function ChartTable({ title, data }) {
               {/* 아티스트 */}
               <td className="px-4 py-3 text-right">{item.artist}</td>
               {/* 스트림 수 */}
-              <td className="px-4 py-3 text-right">{item.streams}</td>
+              <td className="px-4 py-3 text-right">
+                {item.streams}
+                {item.views}
+              </td>
               {/* 재생 */}
               <td className="px-4 py-3 text-center">
                 <button className=" hover:text-primary text-[.75rem]">
