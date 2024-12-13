@@ -23,11 +23,11 @@ export default function RootLayout({ children }) {
       <html lang="en" className={theme}>
         <body className="flex flex-col min-h-screen bg-lightBackground text-lightText dark:bg-darkBackground dark:text-darkText">
           <Header />
-          <main className="flex flex-1">
+          <main className="flex flex-1 pt-[6rem] pl-[16rem] pb-[3rem]">
             <Sidebar />
-            <div className="flex-1 p-4">{children}</div>
+            <div className="flex-1 p-4 overflow-y-auto">{children}</div>
           </main>
-          <footer className="flex justify-center items-center absolute bottom-[0.5rem] w-full font-light text-[0.8rem] text-lightText dark:text-darkText gap-2">
+          <footer className="fixed bottom-0 left-0 w-full h-[3rem] items-end bg-lightBackground pb-[0.5rem] dark:bg-darkBackground shadow-md flex justify-center  font-light text-[0.8rem] text-lightText dark:text-darkText gap-2 z-30">
             <span>© 2024 MusicLab. All Rights Reserved.</span>
             <a
               href="https://github.com/cxaosdev"
@@ -42,7 +42,7 @@ export default function RootLayout({ children }) {
               href="https://github.com/Cirque-Du-Trash"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap--[0.2rem] text-lightText dark:text-darkText hover:underline"
+              className="flex items-center gap-[0.2rem] text-lightText dark:text-darkText hover:underline"
             >
               <FaGithub />
               Cirque-Du-Trash

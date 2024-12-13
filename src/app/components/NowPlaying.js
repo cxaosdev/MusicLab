@@ -11,11 +11,11 @@ export default function NowPlaying() {
 
   return (
     <div className="h-[18rem] w-[12rem] mb-[1rem]">
-      <h2 className="text-[1.1rem] font-semibold mb-[1rem]">Now Playing...</h2>
+      <h2 className="text-[1.2rem] font-semibold mb-[1rem]">Now Playing...</h2>
       <div className="mb-[1rem] flex items-center justify-between">
         <div>
-          <h3 className="text-[1rem] font-semibold">Title</h3>
-          <p className="text-[1rem] font-light">Artist</p>
+          <h3 className="text-[.75rem] font-semibold">Title</h3>
+          <p className="text-[.75rem] font-light">Artist</p>
         </div>
         <div onClick={togglePlay} className="cursor-pointer">
           {isPlaying ? (
@@ -29,7 +29,7 @@ export default function NowPlaying() {
         <img
           src="https://via.placeholder.com/300x300"
           alt="What’s Playing"
-          className="w-[11rem] h-[11rem] background rounded-sm"
+          className="w-[12rem] h-[12rem] background rounded-sm"
         />
       </div>
     </div>

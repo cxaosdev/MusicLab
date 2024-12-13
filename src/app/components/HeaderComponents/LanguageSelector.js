@@ -9,9 +9,6 @@ export default function LanguageSelector() {
     { code: "En", label: "English" },
     { code: "Ko", label: "한국어" },
     { code: "Ja", label: "日本語" },
-    // { code: "En", label: <RiEnglishInput /> },
-    // { code: "Ko", label: <TbAlphabetKorean /> },
-    // { code: "Ja", label: "お" },
   ];
 
   const toggleDropdown = () => setIsOpen((prev) => !prev);
@@ -21,40 +18,40 @@ export default function LanguageSelector() {
     setIsOpen(false);
   };
 
+  const currentLanguage = languages.find(
+    (lang) => lang.code === selectedLanguage
+  );
+
   return (
     <div className="relative w-max">
-      {/* 버튼 */}
       <div
         onClick={toggleDropdown}
-        className="flex items-center justify-between gap-1 px-4 py-2 bg-lightButton dark:bg-darkButton rounded-full cursor-pointer shadow-md hover:bg-gray-200 dark:hover:bg-gray-600 transition-all"
+        className="flex items-center justify-end button w-[5.5rem] h-[2.3rem] px-4 py-2 rounded-full cursor-pointer shadow-md transition-all"
       >
-        <span className="font-medium text-sm text-lightText dark:text-darkText">
-          {selectedLanguage}
+        <span className="font-medium text-[.75rem] ml-auto">
+          {currentLanguage?.label}
         </span>
         <RiArrowDropDownLine
-          className={`text-lg text-gray-700 dark:text-gray-300 transform transition-transform duration-300 ${
+          className={`text-[1.5rem] translate-x-[.3rem] transform transition-transform duration-300 ${
             isOpen ? "rotate-180" : "rotate-0"
           }`}
         />
       </div>
 
-      {/* 드롭다운 */}
       {isOpen && (
-        <div className="absolute top-12 left-0 bg-white dark:bg-gray-800 shadow-lg rounded-lg w-32">
-          <ul className="flex flex-col divide-y divide-gray-200 dark:divide-gray-700">
-            {languages.map((lang) => (
-              <li
-                key={lang.code}
-                onClick={() => handleLanguageChange(lang.code)}
-                className={`px-4 py-2 text-sm cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 ${
-                  selectedLanguage === lang.code
-                    ? "font-bold bg-gray-100 dark:bg-gray-700"
-                    : "font-normal"
-                }`}
-              >
-                {lang.label}
-              </li>
-            ))}
+        <div className="absolute top-[2.5rem] left-0 bg-lightButton dark:bg-darkBackground shadow-lg rounded-lg w-40">
+          <ul className="flex flex-col space-y-[.2rem]  justify-center">
+            {languages
+              .filter((lang) => lang.code !== selectedLanguage)
+              .map((lang) => (
+                <li
+                  key={lang.code}
+                  onClick={() => handleLanguageChange(lang.code)}
+                  className="flex items-center gap-2 text-center justify-center w-[5.5rem] font-medium text-[.75rem] h-[2.3rem] px-4 py-2 rounded-full button cursor-pointer"
+                >
+                  {lang.label}
+                </li>
+              ))}
           </ul>
         </div>
       )}

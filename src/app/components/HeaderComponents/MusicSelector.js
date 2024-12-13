@@ -7,7 +7,7 @@ export default function MusicSelector() {
   const [selected, setSelected] = useState("YouTube Music");
   console.log(selected);
   return (
-    <nav className="flex items-center m-[.2rem] px-[.6rem] py-[.3rem] justify-center bg-lightButton dark:bg-darkButton rounded-full">
+    <nav className="flex items-center mb-[.2rem] px-[.6rem] py-[.3rem] justify-center bg-lightButton dark:bg-darkButton rounded-full">
       <button
         onClick={() => setSelected("YouTube Music")}
         className={`flex items-center gap-2 px-4 py-2 rounded-full cursor-pointer text-[.75rem] transition-all duration-300 ease-in-out transform ${
