@@ -1,15 +1,16 @@
 "use client";
-import MusicSelector from "./MusicSelector";
+import LanguageSelector from "./HeaderComponents/LanguageSelector";
+import MusicSelector from "./HeaderComponents/MusicSelector";
 import { useContext } from "react";
 import { MdDarkMode, MdWbSunny } from "react-icons/md";
-import { RiArrowDropDownLine } from "react-icons/ri";
+import { MdAccountCircle } from "react-icons/md";
 import { ThemeContext } from "../layout";
 
 export default function Header() {
   const { theme, toggleTheme } = useContext(ThemeContext);
 
   return (
-    <header className="flex justify-between items-center px-6 py-2 bg-lightBackground dark:bg-darkBackground h-[6rem]">
+    <header className="flex justify-between items-center px-[1rem] py-[1rem] bg-lightBackground dark:bg-darkBackground h-[6rem]">
       {theme === "dark" ? (
         <img
           className="ml-[1rem] h-[2rem]"
@@ -27,12 +28,7 @@ export default function Header() {
         <MusicSelector />
 
         {/* 언어 */}
-        <div className="flex items-center justify-center button px-3 py-2 rounded-full cursor-pointer">
-          <>
-            <RiArrowDropDownLine className="text-[1.4rem]" />
-            <span className="font-semibold text-[1rem]">En</span>
-          </>
-        </div>
+        <LanguageSelector />
 
         {/* 다크모드 */}
         <button
@@ -43,6 +39,13 @@ export default function Header() {
             <MdWbSunny className="text-[1.4rem]" />
           ) : (
             <MdDarkMode className="text-[1.4rem]" />
+          )}
+        </button>
+        <button className="flex items-center justify-center px-3 py-2 button rounded-full cursor-pointer">
+          {theme === "light" ? (
+            <MdAccountCircle className="text-[1.8rem]" />
+          ) : (
+            <MdAccountCircle className="text-[1.8rem]" />
           )}
         </button>
       </div>

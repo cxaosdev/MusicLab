@@ -10,7 +10,7 @@ export default function NowPlaying() {
   };
 
   return (
-    <div className="h-[18rem] w-[12rem] mb-[1rem] ml-[1rem]">
+    <div className="h-[18rem] w-[12rem] mb-[1rem]">
       <h2 className="text-[1.1rem] font-semibold mb-[1rem]">Now Playing...</h2>
       <div className="mb-[1rem] flex items-center justify-between">
         <div>
