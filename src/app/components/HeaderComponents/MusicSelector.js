@@ -2,16 +2,16 @@
 import { useState } from "react";
 import { FaApple, FaSpotify } from "react-icons/fa";
 import { SiYoutubemusic } from "react-icons/si";
+import { useMusic } from "@/app/context/MusicContext";
 
-export default function MusicSelector() {
-  const [selected, setSelected] = useState("YouTube Music");
-  console.log(selected);
+export default function ChartSelector() {
+  const { selectedChart, setSelectedChart } = useMusic();
   return (
-    <nav className="flex items-center mb-[.2rem] px-[.6rem] py-[.3rem] justify-center bg-lightButton dark:bg-darkButton rounded-full">
+    <nav className="flex items-center m-[.2rem] px-[.6rem] py-[.3rem] justify-center bg-lightButton dark:bg-darkButton rounded-full">
       <button
-        onClick={() => setSelected("YouTube Music")}
+        onClick={() => setSelectedChart("YouTube Music")}
         className={`flex items-center gap-2 px-4 py-2 rounded-full cursor-pointer text-[.75rem] transition-all duration-300 ease-in-out transform ${
-          selected === "YouTube Music"
+          selectedChart === "YouTube Music"
             ? "bg-lightBackground text-lightText dark:bg-darkBackground/60 dark:text-darkText "
             : "bg-transparent text-lightText dark:text-darkText "
         }`}
@@ -20,9 +20,9 @@ export default function MusicSelector() {
         YouTube Music
       </button>
       <button
-        onClick={() => setSelected("Apple Music")}
+        onClick={() => setSelectedChart("Apple Music")}
         className={`flex items-center gap-2 px-4 py-2 rounded-full cursor-pointer text-[.75rem] transition-all duration-300 ease-in-out transform ${
-          selected === "Apple Music"
+          selectedChart === "Apple Music"
             ? "bg-lightBackground text-lightText dark:bg-darkBackground/60 dark:text-darkText "
             : "bg-transparent text-lightText dark:text-darkText "
         }`}
@@ -31,9 +31,9 @@ export default function MusicSelector() {
         Apple Music
       </button>
       <button
-        onClick={() => setSelected("Spotify")}
+        onClick={() => setSelectedChart("Spotify")}
         className={`flex items-center gap-2 px-4 py-2 rounded-full cursor-pointer text-[.75rem] transition-all duration-300 ease-in-out transform ${
-          selected === "Spotify"
+          selectedChart === "Spotify"
             ? "bg-lightBackground text-lightText dark:bg-darkBackground/60 dark:text-darkText "
             : "bg-transparent text-lightText dark:text-darkText "
         }`}

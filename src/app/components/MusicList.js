@@ -1,33 +1,65 @@
 import React, { useEffect, useState } from "react";
 import { FaPlay } from "react-icons/fa";
-import { fetchData } from "@/api/axios";
+import { useMusic } from "../context/MusicContext";
+
+import {
+  fetchAppleMusicChart,
+  fetchYoutubeChart,
+  fetchSpotifyChart,
+} from "@/api/fetchChart";
 
 export default function MusicList() {
-  const [appleMusicJp, setAppleMusicJp] = useState([]);
   const [appleMusicKr, setAppleMusicKr] = useState([]);
-  const [appleMusicUsa, setAppleMusicUsa] = useState([]);
+  const [youtubeKr, setYoutubeKr] = useState([]);
+  const [spotifyKr, setSpotifyKr] = useState([]);
+
+  const { selectedChart, selectedRegion } = useMusic();
+  const [chartData, setChartData] = useState([]);
 
   useEffect(() => {
-    const fetchDataAsync = async () => {
+    const fetchData = async () => {
       try {
-        const data = await fetchData();
+        let data = [];
+        if (selectedChart === "YouTube Music") {
+          data = await fetchYoutubeChart();
+        } else if (selectedChart === "Apple Music") {
+          data = await fetchAppleMusicChart();
+        } else if (selectedChart === "Spotify") {
+          data = await fetchSpotifyChart();
+        }
 
-        setAppleMusicJp(data.slice(0, 100));
-        setAppleMusicKr(data.slice(100, 200));
-        setAppleMusicUsa(data.slice(200, 300));
-
-        console.log("Chart 1:", data.slice(0, 100));
-        console.log("Chart 2:", data.slice(100, 200));
-        console.log("Chart 3:", data.slice(200, 300));
+        // 지역 데이터를 추출하는 로직
+        let regionData = [];
+        if (selectedRegion === "JPN") {
+          regionData = data[0];
+        } else if (selectedRegion === "KOR") {
+          regionData = data[1];
+        } else if (selectedRegion === "USA") {
+          regionData = data[2];
+        }
+        setChartData(regionData);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error("Error fetching chart data:", error);
       }
     };
 
-    fetchDataAsync();
-  }, []);
+    fetchData();
+  }, [selectedChart, selectedRegion]);
+
   return (
-    <div className="w-[90%] h-[60%] mx-auto px-[2rem] py-[1rem]">
+    <div>
+      <ChartTable
+        title={`${selectedChart} ${selectedRegion} Chart`}
+        data={chartData}
+      />
+    </div>
+  );
+}
+
+function ChartTable({ title, data }) {
+  return (
+    <div className="my-8">
+      <h2 className="mb-4 text-xl font-bold">{title}</h2>
       <table className="w-full text-left border-collapse table-auto">
         {/* 테이블 헤더 */}
         <thead>
@@ -41,7 +73,7 @@ export default function MusicList() {
           </tr>
         </thead>
         <tbody className="font-normal text-lightText/80 dark:text-darkText/80">
-          {appleMusicKr.map((item, index) => (
+          {data.map((item, index) => (
             <tr
               key={index}
               className="transition-colors border-b border-lightButton/50 dark:border-darkButton/50 hover:bg-lightButton/50 dark:hover:bg-darkButton/50"

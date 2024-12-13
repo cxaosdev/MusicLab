@@ -1,6 +1,7 @@
 "use client";
+import Chart from "./HeaderComponents/MusicSelector";
 import LanguageSelector from "./HeaderComponents/LanguageSelector";
-import MusicSelector from "./HeaderComponents/MusicSelector";
+import RegionSelector from "./HeaderComponents/RegionSelector";
 import { useContext } from "react";
 import { MdDarkMode, MdWbSunny } from "react-icons/md";
 import { MdAccountCircle } from "react-icons/md";
@@ -26,7 +27,8 @@ export default function Header() {
         />
       )}
       <div className="flex space-x-[.5rem] items-start">
-        <MusicSelector />
+        <RegionSelector />
+        <Chart />
         <LanguageSelector />
         <button
           onClick={toggleTheme}
