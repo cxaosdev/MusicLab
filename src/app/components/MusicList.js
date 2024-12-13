@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { FaPlay } from "react-icons/fa";
 import { useMusic } from "../context/MusicContext";
@@ -45,29 +46,23 @@ export default function MusicList() {
 
     fetchData();
   }, [selectedChart, selectedRegion]);
-
   return (
     <div>
-      <ChartTable
-        title={`${selectedChart} ${selectedRegion} Chart`}
-        data={chartData}
-      />
+      <ChartTable data={chartData} />
     </div>
   );
 }
 
-function ChartTable({ title, data }) {
+function ChartTable({ data }) {
   return (
-    <div className="my-8">
-      <h2 className="mb-4 text-xl font-bold">{title}</h2>
+    <div className="mb-8 ml-2 overflow-x-auto">
       <table className="w-full text-left border-collapse table-auto">
-        {/* 테이블 헤더 */}
-        <thead>
+        <thead className="sticky top-0 z-10 bg-lightBackground dark:bg-darkBackground">
           <tr className="border-b-[1px] border-lightText dark:border-darkText font-bold">
             <th className="w-[5%] px-4 py-3 text-center">#</th>
             <th className="w-[10%] px-4 py-3 text-center"></th>
             <th className="w-[40%] px-4 py-3 text-left">Title</th>
-            <th className="w-[25%] px-4 py-3 text-right">Artist</th>
+            <th className="w-[25%] px-4 py-3 text-left pl-1">Artist</th>
             <th className="w-[15%] px-4 py-3 text-right">Streams</th>
             <th className="w-[5%] px-4 py-3 text-center"></th>
           </tr>
@@ -76,14 +71,9 @@ function ChartTable({ title, data }) {
           {data.map((item, index) => (
             <tr
               key={index}
-              className="transition-colors border-b border-lightButton/50 dark:border-darkButton/50 hover:bg-lightButton/50 dark:hover:bg-darkButton/50"
+              className="transition-colors border-b cursor-pointer border-lightButton/50 dark:border-darkButton/50 hover:bg-lightButton/50 dark:hover:bg-darkButton/50"
             >
-              {/* 순위 */}
-              <td className="px-4 py-3 text-center">
-                {item.rank}
-                {item.current_position}
-              </td>
-              {/* 앨범 이미지 */}
+              <td className="px-4 py-3 text-center">{index + 1}</td>
               <td className="px-4 py-3 text-center">
                 <img
                   src={item.thumbnail_link}
@@ -91,18 +81,22 @@ function ChartTable({ title, data }) {
                   className="object-cover w-10 h-10 rounded"
                 />
               </td>
-              {/* 노래 제목 */}
-              <td className="px-4 py-3 font-medium text-left">{item.title}</td>
-              {/* 아티스트 */}
-              <td className="px-4 py-3 text-right">{item.artist}</td>
-              {/* 스트림 수 */}
-              <td className="px-4 py-3 text-right">
-                {item.streams}
-                {item.views}
+              <td className="px-4 py-3 font-medium text-left">
+                <Link
+                  href={item.link || "song-link"}
+                  className="hover:text-primary"
+                >
+                  {item.title}
+                </Link>
               </td>
-              {/* 재생 */}
+              <td className="px-4 py-3 pl-1 text-left">
+                <Link href={item.artist_link} className="hover:text-primary">
+                  {item.artist}
+                </Link>
+              </td>
+              <td className="px-4 py-3 text-right">{item.streams}</td>
               <td className="px-4 py-3 text-center">
-                <button className=" hover:text-primary text-[.75rem]">
+                <button className="hover:text-primary pl-1 text-[.75rem]">
                   <FaPlay />
                 </button>
               </td>

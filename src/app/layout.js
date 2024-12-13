@@ -8,6 +8,14 @@ import { MusicProvider } from "./context/MusicContext";
 
 export const ThemeContext = createContext();
 
+// export const metadata = {
+//   title: "MusicLab",
+//   description: "Explore various music charts and enjoy your favorite music.",
+//   icons: {
+//     icon: "/dark_logo.png",
+//   },
+// };
+
 export default function RootLayout({ children }) {
   const [theme, setTheme] = useState("dark");
 
