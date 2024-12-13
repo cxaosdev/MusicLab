@@ -1,83 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaPlay } from "react-icons/fa";
+import { fetchData } from "@/api/axios";
 
 export default function MusicList() {
-  const dummyData = [
-    {
-      title: "Title134",
-      artist: "Artis2135252551t",
-      streams: "140,0340",
-    },
-    {
-      title: "Tewit2135le",
-      artist: "Artist",
-      streams: "130,460",
-    },
-    {
-      title: "Tiwrt2351le",
-      artist: "Awrt325irst",
-      streams: "100,036",
-    },
-    {
-      title: "Tweit2315le",
-      artist: "Ar235tist",
-      streams: "90,036",
-    },
-    {
-      title: "Ti12sf3552tle",
-      artist: "Art235saist",
-      streams: "90,023",
-    },
-    {
-      title: "Tiastle",
-      artist: "Ar3525tist",
-      streams: "90,030",
-    },
-    {
-      title: "Titasfsafaf35le",
-      artist: "Art3525ist",
-      streams: "90,007",
-    },
-    {
-      title: "Title134",
-      artist: "Artis2135252551t",
-      streams: "140,0340",
-    },
-    {
-      title: "Tewit2135le",
-      artist: "Artist",
-      streams: "130,460",
-    },
-    {
-      title: "Tiwrt2351le",
-      artist: "Awrt325irst",
-      streams: "100,036",
-    },
-    {
-      title: "Tweit2315le",
-      artist: "Ar235tist",
-      streams: "90,036",
-    },
-    {
-      title: "Ti12sf3552tle",
-      artist: "Art235saist",
-      streams: "90,023",
-    },
-    {
-      title: "Tiastle",
-      artist: "Ar3525tist",
-      streams: "90,030",
-    },
-    {
-      title: "Titasfsafaf35le",
-      artist: "Art3525ist",
-      streams: "90,007",
-    },
-  ];
+  const [appleMusicJp, setAppleMusicJp] = useState([]);
+  const [appleMusicKr, setAppleMusicKr] = useState([]);
+  const [appleMusicUsa, setAppleMusicUsa] = useState([]);
 
+  useEffect(() => {
+    const fetchDataAsync = async () => {
+      try {
+        const data = await fetchData();
+
+        setAppleMusicJp(data.slice(0, 100));
+        setAppleMusicKr(data.slice(100, 200));
+        setAppleMusicUsa(data.slice(200, 300));
+
+        console.log("Chart 1:", data.slice(0, 100));
+        console.log("Chart 2:", data.slice(100, 200));
+        console.log("Chart 3:", data.slice(200, 300));
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchDataAsync();
+  }, []);
   return (
     <div className="w-[90%] h-[60%] mx-auto px-[2rem] py-[1rem]">
-      <table className="table-auto w-full border-collapse text-left">
+      <table className="w-full text-left border-collapse table-auto">
         {/* 테이블 헤더 */}
         <thead>
           <tr className="border-b-[1px] border-lightText dark:border-darkText font-bold">
@@ -89,32 +40,31 @@ export default function MusicList() {
             <th className="w-[5%] px-4 py-3 text-center"></th>
           </tr>
         </thead>
-        {/* 테이블 바디 */}
         <tbody className="font-normal text-lightText/80 dark:text-darkText/80">
-          {dummyData.map((item, index) => (
+          {appleMusicKr.map((item, index) => (
             <tr
               key={index}
-              className="border-b border-lightButton/50 dark:border-darkButton/50 hover:bg-lightButton/50 dark:hover:bg-darkButton/50 transition-colors"
+              className="transition-colors border-b border-lightButton/50 dark:border-darkButton/50 hover:bg-lightButton/50 dark:hover:bg-darkButton/50"
             >
-              {/* 번호 */}
-              <td className="px-4 py-3 text-center">{index + 1}</td>
-              {/* 이미지 */}
+              {/* 순위 */}
+              <td className="px-4 py-3 text-center">{item.rank}</td>
+              {/* 앨범 이미지 */}
               <td className="px-4 py-3 text-center">
                 <img
-                  src="https://via.placeholder.com/40"
+                  src={item.thumbnail_link}
                   alt="Cover"
-                  className="w-10 h-10 rounded object-cover"
+                  className="object-cover w-10 h-10 rounded"
                 />
               </td>
-              {/* 제목 */}
-              <td className="px-4 py-3 text-left font-medium">{item.title}</td>
+              {/* 노래 제목 */}
+              <td className="px-4 py-3 font-medium text-left">{item.title}</td>
               {/* 아티스트 */}
               <td className="px-4 py-3 text-right">{item.artist}</td>
               {/* 스트림 수 */}
               <td className="px-4 py-3 text-right">{item.streams}</td>
-              {/* 재생 버튼 */}
+              {/* 재생 */}
               <td className="px-4 py-3 text-center">
-                <button className=" hover:text-blue-500">
+                <button className=" hover:text-primary text-[.75rem]">
                   <FaPlay />
                 </button>
               </td>
