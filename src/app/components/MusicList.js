@@ -1,4 +1,5 @@
 import Link from "next/link";
+import NowPlaying from "./NowPlaying";
 import React, { useEffect, useState } from "react";
 import { FaPlay } from "react-icons/fa";
 import { useMusic } from "../context/MusicContext";
@@ -16,6 +17,7 @@ export default function MusicList() {
 
   const { selectedChart, selectedRegion } = useMusic();
   const [chartData, setChartData] = useState([]);
+  const [currentSong, setCurrentSong] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -47,13 +49,18 @@ export default function MusicList() {
     fetchData();
   }, [selectedChart, selectedRegion]);
   return (
-    <div>
-      <ChartTable data={chartData} />
+    <div className="flex">
+      <div className="flex-1">
+        <ChartTable data={chartData} onPlay={setCurrentSong} />
+      </div>
+      <div className="w-[12rem]">
+        <NowPlaying currentSong={currentSong} />
+      </div>
     </div>
   );
 }
 
-function ChartTable({ data }) {
+function ChartTable({ data, onPlay }) {
   return (
     <div className="mb-8 ml-2 overflow-x-auto">
       <table className="w-full text-left border-collapse table-auto">
@@ -83,20 +90,28 @@ function ChartTable({ data }) {
               </td>
               <td className="px-4 py-3 font-medium text-left">
                 <Link
-                  href={item.link || "song-link"}
+                  href={item.song_link || item.link}
                   className="hover:text-primary"
                 >
                   {item.title}
                 </Link>
               </td>
               <td className="px-4 py-3 pl-1 text-left">
-                <Link href={item.artist_link} className="hover:text-primary">
+                <Link
+                  href={item.artist_link || "#"}
+                  className="hover:text-primary"
+                >
                   {item.artist}
                 </Link>
               </td>
-              <td className="px-4 py-3 text-right">{item.streams}</td>
+              <td className="px-4 py-3 text-right">
+                {item.streams || item.views}
+              </td>
               <td className="px-4 py-3 text-center">
-                <button className="hover:text-primary pl-1 text-[.75rem]">
+                <button
+                  className="hover:text-primary pl-1 text-[.75rem]"
+                  onClick={() => onPlay(item)}
+                >
                   <FaPlay />
                 </button>
               </td>
